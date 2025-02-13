@@ -1,0 +1,7 @@
+h1 {
+    font-family: Arial, serif; /* Usa Times New Roman, si no está disponible, usa una fuente serif genérica */
+}
+
+body {
+    font-family: Arial, sans-serif; /* Usa Arial, si no está disponible, usa una fuente sans-serif genérica */
+}
