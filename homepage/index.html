@@ -11,8 +11,20 @@
         <h1 class="encabezado_titulo">
             Simon Says
         </h1>
-        <button class="encabezado_boton"><strong>Play</strong></button>
+        
     </header>
+    <div class="simon">
+        <button id="boton_empezar"><strong>Play</strong></button>
+        <div class="botones_juego">
+            <div class="celda rojo"></div>
+            <div class="celda verde"></div>
+            <div class="celda azul"></div>
+            <div class="celda amarillo"></div>
+            <!-- Círculo central para recortar el centro de los rombos -->
+            <div class="centro"></div>
+
+        </div>
+    </div>
     <section class="puntacion">
         <h2 class="puntuacion_titulo">Top Scorers</h2>
         <table class="puntacion_tabla_puntajes">
@@ -38,5 +50,6 @@
             </tbody>
         </table>
     </section>
+    <script src="script.js"></script>
 </body>
 </html>

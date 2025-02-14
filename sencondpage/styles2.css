@@ -3,5 +3,107 @@ h1 {
 }
 
 body {
-    font-family: Arial, sans-serif; /* Usa Arial, si no está disponible, usa una fuente sans-serif genérica */
+    background-color: rgb(228, 243, 253);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.encabezado {
+    text-align: center;
+}
+
+.encabezado_titulo {
+    margin-bottom: 20px;
+}
+
+.encabezado_formulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Espacio entre el input y el botón */
+}
+
+#nombreInput {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    font-size: 16px;
+}
+
+.encabezado_boton {
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #4cafa7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Contenedor del juego */
+.simon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Contenedor de los botones del juego */
+.botones_juego {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0px; 
+    transform: rotate(45deg); /* Inclinación de 45 grados */
+}
+
+/* Estilos de las celdas (botones de colores) */
+.celda {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.rojo {
+    background-color: rgb(245, 78, 78);
+}
+
+.verde {
+    background-color: rgb(52, 170, 52);
+}
+
+.azul {
+    background-color: rgb(73, 73, 241);
+}
+
+.amarillo {
+    background-color: rgb(247, 247, 54);
+}
+
+.celda {
+    width: 0px;
+    height: 0px;
+}
+
+/* Círculo central para recortar */
+.centro {
+    position: absolute;
+    width: 0px; /* Tamaño del círculo */
+    height: 0px;
+    background-color: rgb(228, 243, 253); /* Mismo color del fondo */
+    border-radius: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.encabezado_boton:hover {
+    background-color: #3d8a83;
 }

@@ -3,6 +3,7 @@ h1 {
 }
 
 body {
+    background-color: rgb(228, 243, 253);
     font-family: Arial, sans-serif; /* Usa Arial, si no está disponible, usa una fuente sans-serif genérica */
 }
 
@@ -17,12 +18,87 @@ body {
     margin-top: 30px;
 }
 
-.encabezado_boton {
+/* Contenedor del juego */
+.simon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+/* Boton para empezar a jugar */
+#boton_empezar {
     border: none;
     border-radius: 10px;
+    padding: 10px 20px;
+    background-color: #4cafa7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+
+/* Contenedor de los botones del juego */
+.botones_juego {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px; 
+    transform: rotate(45deg); /* Inclinación de 45 grados */
+}
+
+#boton_empezar:hover {
+    background-color: #3d8a83;
+}
+
+/* Círculo central para recortar */
+.centro {
+    position: absolute;
+    width: 90px; /* Tamaño del círculo */
+    height: 90px;
+    background-color: rgb(228, 243, 253); /* Mismo color del fondo */
+    border-radius: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* Estilos de las celdas (botones de colores) */
+.celda {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.rojo {
+    background-color: rgb(245, 78, 78);
+}
+
+.verde {
+    background-color: rgb(52, 170, 52);
+}
+
+.azul {
+    background-color: rgb(73, 73, 241);
+}
+
+.amarillo {
+    background-color: rgb(247, 247, 54);
+}
+
+.celda {
+    width: 150px;
+    height: 150px;
 }
 
 .puntuacion_titulo {
+    padding-top: 150px;
     text-align: center;
 }
 
@@ -39,5 +115,5 @@ body {
 }
 
 .puntacion_tabla_puntajes th {
-    background-color: #f2f2f2; /* Color de fondo para los encabezados */
+    background-color: #4cafa7; /* Color de fondo para los encabezados */
 }

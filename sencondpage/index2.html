@@ -11,10 +11,25 @@
         <h1 class="encabezado_titulo">
             Name
         </h1>
-        <button class="encabezado_boton"><strong>Play</strong></button>
+        <!-- Formulario para ingresar el nombre -->
+        <form id="nombreForm" class="encabezado_formulario">
+            <input type="text" id="nombreInput" placeholder="Enter your name" required>
+            <button type="submit" class="encabezado_boton"><strong>Play</strong></button>
+        </form>
     </header>
-    <section>
-
-    </section>
+    <div>
+        <div class="simon">
+            <div class="botones_juego">
+                <div class="celda rojo"></div>
+                <div class="celda verde"></div>
+                <div class="celda azul"></div>
+                <div class="celda amarillo"></div>
+                <!-- Círculo central para recortar el centro de los rombos -->
+                <div class="centro"></div>
+    
+            </div>
+        </div>
+    </div>
+    <script src="script2.js"></script>
 </body>
 </html>

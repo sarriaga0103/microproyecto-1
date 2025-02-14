@@ -1,0 +1,29 @@
+h1 {
+    font-family: Arial, serif; /* Usa Times New Roman, si no está disponible, usa una fuente serif genérica */
+}
+
+body {
+    background-color: rgb(228, 243, 253);
+    font-family: Arial, sans-serif; /* Usa Arial, si no está disponible, usa una fuente sans-serif genérica */
+}
+
+.rojo {
+    background-color: rgb(245, 78, 78);
+}
+
+.verde {
+    background-color: rgb(52, 170, 52);
+}
+
+.azul {
+    background-color: rgb(73, 73, 241);
+}
+
+.amarillo {
+    background-color: rgb(247, 247, 54);
+}
+
+.celda {
+    width: 150px;
+    height: 150px;
+}
