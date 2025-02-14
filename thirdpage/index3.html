@@ -3,21 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Says!</title>
+    <title>Simon Says - Puntaje</title>
+    <link rel="stylesheet" href="styles3.css"/>
 </head>
 <body>
+    <header class="encabezado">
+        <h1 class="encabezado_titulo">
+            Simon Says
+        </h1>
+    </header>
+
     <div class="simon">
-        <button id="boton_empezar"><strong>Play</strong></button>
         <div class="botones_juego">
             <div class="celda rojo"></div>
             <div class="celda verde"></div>
             <div class="celda azul"></div>
             <div class="celda amarillo"></div>
-            <!-- Círculo central para recortar el centro de los rombos -->
-            <div class="centro"></div>
-
         </div>
-        <div id="ronda"></div>
+
+        <!-- Sección para mostrar el puntaje -->
+        <div class="puntaje">
+            <h2>Puntaje:</h2>
+            <p id="puntaje_actual">1200</p> <!-- Número de referencia -->
+        </div>
+
+        <!-- Boton para volver al menu principal -->
+        <button id="boton_back"><strong>Back</strong></button>
     </div>
+
+    <script src="script3.js"></script>
 </body>
 </html>

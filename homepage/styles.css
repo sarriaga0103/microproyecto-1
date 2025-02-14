@@ -1,9 +1,11 @@
 h1 {
     font-family: Arial, serif; /* Usa Times New Roman, si no está disponible, usa una fuente serif genérica */
+    color: rgb(102, 102, 102);
 }
 
 body {
     background-color: rgb(228, 243, 253);
+    color: rgb(102, 102, 102);
     font-family: Arial, sans-serif; /* Usa Arial, si no está disponible, usa una fuente sans-serif genérica */
 }
 
@@ -16,6 +18,12 @@ body {
 .encabezado_titulo {
     padding-bottom: 100px;
     margin-top: 30px;
+}
+
+.encabezado_titulo {
+    padding-bottom: 100px;
+    margin-top: 30px;
+    font-size: 60px;
 }
 
 /* Contenedor del juego */
@@ -70,8 +78,8 @@ body {
 
 /* Estilos de las celdas (botones de colores) */
 .celda {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 15px;
     cursor: pointer;
 }
@@ -90,11 +98,6 @@ body {
 
 .amarillo {
     background-color: rgb(247, 247, 54);
-}
-
-.celda {
-    width: 150px;
-    height: 150px;
 }
 
 .puntuacion_titulo {
