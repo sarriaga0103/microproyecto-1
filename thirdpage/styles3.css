@@ -93,3 +93,7 @@ body {
     font-weight: bold;
     color: rgb(102, 102, 102);
 }
+
+.ganador {
+    animation: spin 1s ease-in-out;
+}
