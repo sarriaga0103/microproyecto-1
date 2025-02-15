@@ -1,120 +1,109 @@
-const ronda = document.getElementById('ronda');
-const botonesJuego = document.getElementById('botones_juego')
+const ronda = document.getElementById("ronda");
+const botonesJuego = document.getElementById("botones_juego");
 
-class Juego{
-    constructor(botonesJuego, ronda){
-        this,ronda = 0;        //Número de la ronda jugada
-        this.pocisionEnSecuancia = 0; //Pocision en el boton que se encuentra el usuario en esa secuencia
-        this.totalRondas = 10; //Total de rondas del juego
-        this.secuencia = [];   //Secuencia de los botones
-        this.velocidad = 1000; //Velocidad del patron de las rondas 
+class Juego {
+    constructor(botonesJuego, ronda) {
+        this.ronda = 0; // Número de la ronda jugada
+        this.pocisionEnSecuencia = 0; // Posición del usuario en la secuencia
+        this.totalRondas = 10; // Total de rondas
+        this.secuencia = []; // Secuencia de botones
+        this.velocidad = 1000; // Velocidad de la secuencia
         this.bloqueoBotones = true; 
-        this.botones = Array.from(botonesJuego);
-        this.display = {
-            ronda
-        }
-        this.sonidoError = new Audio('./'), //Sonidos del juego
-        this.sonidoBotones = new Audio('./sounds/sonidoJuego.mp3');
+        this.botones = Array.from(botonesJuego.children);
+        this.display = { ronda };
+        this.sonidoError = new Audio("./sounds/error.mp3");
+        this.sonidoBotones = [
+            new Audio("./sounds/sonido1.mp3"),
+            new Audio("./sounds/sonido2.mp3"),
+            new Audio("./sounds/sonido3.mp3"),
+            new Audio("./sounds/sonido4.mp3"),
+        ];
     }
 
-    //Metodos
-
-    //Inicia el juego
-    iniciarRonda() { 
+    iniciarRonda() {
         this.actualizarRonda(0);
-        this.pocisionEnSecuancia = 0;
+        this.pocisionEnSecuencia = 0;
         this.secuencia = this.crearSecuencias();
-        this.botones.forEach((elemento, i)=>{
-            elemento.classList.remove('ganador');
+        this.botones.forEach((elemento, i) => {
+            elemento.classList.remove("ganador");
             elemento.onclick = () => this.precionarBoton(i);
-
         });
         this.mostrarSecuencia();
-    } 
+    }
 
-    //Actualiza las rondas del juego
-    actualizarRonda(value){
+    actualizarRonda(value) {
         this.ronda = value;
-        this.display.ronda
+        this.display.ronda.textContent = `Ronda: ${this.ronda}`;
     }
 
-    //Creea el arreglo aleatorio para los botones
-    crearSecuencias(){
-        return Array.from({length: this.totalRondas}, () => this.inicioColorRandom());
+    crearSecuencias() {
+        return Array.from({ length: this.totalRondas }, () => this.inicioColorRandom());
     }
 
-    //Eleccion al azar de colores en un rango de 0 a 3
-    inicioColorRandom(){
+    inicioColorRandom() {
         return Math.floor(Math.random() * 4);
     }
 
-    //Ejecutar al precionar una boton
-    precionarBoton(){
-        !this.bloqueoBotones && this.validarOpcionCorrecta(value);
-
+    precionarBoton(value) {
+        if (!this.bloqueoBotones) {
+            this.validarOpcionCorrecta(value);
+        }
     }
 
-    //Validacion del boton precionado por el usuario 
-    validarOpcionCorrecta(){
-        if(this.secuencia[this.pocisionEnSecuancia] == value){
+    validarOpcionCorrecta(value) {
+        if (this.secuencia[this.pocisionEnSecuencia] === value) {
             this.sonidoBotones[value].play();
-            if(this.ronda === this.pocisionEnSecuancia){
+            if (this.pocisionEnSecuencia === this.ronda) {
                 this.actualizarRonda(this.ronda + 1);
-                this.speed /= 1.02;
+                this.velocidad /= 1.02;
                 this.juegoFinalizado();
-            }else{
-                this.pocisionEnSecuancia++;
+            } else {
+                this.pocisionEnSecuencia++;
             }
-        }else{
+        } else {
+            this.sonidoError.play();
             this.juegoFinalizado();
         }
-
     }
 
-    //Verificar que no termine el juego
-    juegoFinalizado(){
-        if(this.ronda === this.totalRondas){
-            this.mostrarSecuencia();
-        }else{
-            this.pocisionEnSecuancia = 0;
-            this.mostrarSecuencia();
+    juegoFinalizado() {
+        if (this.ronda === this.totalRondas) {
+            this.victoriaJuego(); // Si alcanza la última ronda, gana
+        } else {
+            alert("Has perdido, intenta de nuevo!"); // Mensaje de derrota
+            this.iniciarRonda(); // Reinicia el juego
         }
     }
 
-    //Mostrata la secuencia de cada ronda
-    mostrarSecuencia(){
+    mostrarSecuencia() {
         this.bloqueoBotones = true;
         let secuenciaIndex = 0;
-        let timer = setInterval (() => {
-            const botones = this.button[this. secuencia[secuenciaIndex]];
-            this.b
-        })
+        let timer = setInterval(() => {
+            if (secuenciaIndex >= this.ronda + 1) {
+                clearInterval(timer);
+                this.bloqueoBotones = false;
+                return;
+            }
+            this.cambioBoton(this.secuencia[secuenciaIndex]);
+            secuenciaIndex++;
+        }, this.velocidad);
     }
 
-    //Cambio de color de los botones al mostrar la secuencia
-    cambioBoton(){
+    cambioBoton(index) {
+        this.botones[index].classList.add("activo"); // Agrega clase activa
+        setTimeout(() => {
+            this.botones[index].classList.remove("activo"); // La quita después de un tiempo
+        }, this.velocidad / 2); // Se mantiene encendido la mitad del tiempo de la ronda
     }
 
-    //Finalizar el juego si el usuario pierde
-    juegoFinalizado(){
-
+    victoriaJuego() {
+        alert("¡Felicidades! Has ganado el juego."); // Mensaje de victoria
+        this.iniciarRonda(); // Reinicia el juego
     }
-
-    //Mostrar Victora del Juego
-    victoriaJuego(){
-
-    }
-
-    
-
 }
-
-
 
 const juego = new Juego(botonesJuego, ronda);
 
-let botonBack = document.querySelector("#boton_back");
-
-botonBack.addEventListener("click", function () {
-    window.location.href = '../homepage/index.html';
+document.querySelector("#boton_back").addEventListener("click", function () {
+    window.location.href = "../homepage/index.html";
 });
