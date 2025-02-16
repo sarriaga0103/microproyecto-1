@@ -17,7 +17,7 @@ nombreForm.addEventListener("submit", function (event) {
     // Paso a la siguiente pagina
     botonPlay.addEventListener("click", function () {
       window.location.href =
-        "../thirdpage/index3.html";
+        "index3.html";
     });
   }
 });

@@ -105,6 +105,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const juego = new Juego(botonesJuego);
 
     document.querySelector("#boton_back").addEventListener("click", function () {
-        window.location.href = "../homepage/index.html";
+        window.location.href = "index.html";
     });
 });
