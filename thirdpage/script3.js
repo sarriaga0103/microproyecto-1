@@ -1,4 +1,3 @@
-//const ronda = document.getElementById("ronda");
 document.addEventListener("DOMContentLoaded", function () {
     const botonesJuego = document.querySelector(".botones_juego");
 
@@ -23,19 +22,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 new Audio("./sounds/sonido3.mp3"),
                 new Audio("./sounds/sonido4.mp3"),
             ];
+            this.iniciarJuego(); // Corrección: inicia el juego inmediatamente
         }
 
-        iniciarRonda() {
-            console.log("Iniciando la ronda...");
+        iniciarJuego() {
             this.ronda = 0;
-            this.pocisionEnSecuencia = 0;
+            this.velocidad = 1000;
             this.secuencia = this.crearSecuencia();
             this.botones.forEach((elemento, i) => {
                 elemento.classList.remove("ganador");
                 elemento.addEventListener("click", () => this.precionarBoton(i));
             });
+            this.iniciarRonda();
+        }
 
-            setTimeout(() => this.mostrarSecuencia(), 2000);
+        iniciarRonda() {
+            console.log("Iniciando la ronda...");
+            this.pocisionEnSecuencia = 0;
+            this.bloqueoBotones = true;
+            setTimeout(() => this.mostrarSecuencia(), 1000);
         }
 
         crearSecuencia() {
@@ -44,40 +49,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
         precionarBoton(value) {
             if (!this.bloqueoBotones) {
-                this.reproducirSonido(value); // Reproducir sonido al hacer clic
+                this.reproducirSonido(value);
                 this.validarOpcionCorrecta(value);
             }
         }
 
         reproducirSonido(index) {
             if (this.sonidoBotones[index]) {
-                this.sonidoBotones[index].currentTime = 0; // Reiniciar sonido si ya se estaba reproduciendo
+                this.sonidoBotones[index].currentTime = 0;
                 this.sonidoBotones[index].play();
             }
         }
 
         validarOpcionCorrecta(value) {
             if (this.secuencia[this.pocisionEnSecuencia] === value) {
-                this.sonidoBotones[value].play();
                 if (this.pocisionEnSecuencia === this.ronda) {
                     this.ronda++;
-                    this.velocidad /= 1.02;
-                    this.juegoFinalizado();
+                    if (this.ronda === this.totalRondas) {
+                        alert("¡Felicidades! Has ganado el juego.");
+                        this.iniciarJuego();
+                    } else {
+                        setTimeout(() => this.iniciarRonda(), 1000);
+                    }
                 } else {
                     this.pocisionEnSecuencia++;
                 }
             } else {
                 this.sonidoError.play();
                 alert("Has perdido, intenta de nuevo!");
-                this.iniciarRonda();
+                this.iniciarJuego();
             }
         }
 
         mostrarSecuencia() {
-            this.bloqueoBotones = true;
             let secuenciaIndex = 0;
             let timer = setInterval(() => {
-                if (secuenciaIndex >= this.ronda + 1) {
+                if (secuenciaIndex > this.ronda) {
                     clearInterval(timer);
                     this.bloqueoBotones = false;
                     return;
@@ -93,20 +100,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 this.botones[index].classList.remove("activo");
             }, this.velocidad / 2);
         }
-
-        juegoFinalizado() {
-            if (this.ronda === this.totalRondas) {
-                alert("¡Felicidades! Has ganado el juego.");
-                this.iniciarRonda();
-            }
-        }
     }
 
     const juego = new Juego(botonesJuego);
-
-    setTimeout(() => {
-        juego.iniciarRonda();
-    }, 2000);
 
     document.querySelector("#boton_back").addEventListener("click", function () {
         window.location.href = "../homepage/index.html";

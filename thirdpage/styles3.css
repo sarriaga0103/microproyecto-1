@@ -85,7 +85,6 @@ body {
 .activo {
     opacity: 0.6; /* Hace que el botón se vea más claro */
     transform: scale(1.1); /* Aumenta un poco el tamaño del botón */
-    transition: all 0.2s ease-in-out; /* Suaviza la animación */
 }
 
 .celda:hover{
